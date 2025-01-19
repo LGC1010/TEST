@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../stroe/userStore';
 
@@ -23,6 +22,9 @@ const Main = () => {
           >
             마이페이지
           </button>
+          <div>
+            <h1>회원 화면</h1>
+          </div>
         </div>
       ) : (
         <div>
@@ -38,6 +40,9 @@ const Main = () => {
           >
             회원가입 하러가기
           </button>
+          <div className='mt-6 font-bold'>
+            <h1>비회원 화면</h1>
+          </div>
         </div>
       )}
     </div>

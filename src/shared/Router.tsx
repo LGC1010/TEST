@@ -4,13 +4,14 @@ import Login from '../pages/Login';
 import Mypage from '../pages/MyPage';
 import { useAuthStore } from '../stroe/userStore';
 import SignUp from '../pages/SignUp';
+import { RouteProps } from '../types/type';
 
-const PrivateRoute = ({ element: Element, ...rest }) => {
+const PrivateRoute: React.FC<RouteProps> = ({ element: Element, ...rest }) => {
   const { isAuthenticated } = useAuthStore();
   return isAuthenticated ? <Element {...rest} /> : <Navigate to='/login' />;
 };
 
-const PublicRoute = ({ element: Element, ...rest }) => {
+const PublicRoute: React.FC<RouteProps> = ({ element: Element, ...rest }) => {
   const { isAuthenticated } = useAuthStore();
   return !isAuthenticated ? <Element {...rest} /> : <Navigate to='/mypage' />;
 };

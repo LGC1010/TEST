@@ -8,7 +8,6 @@ type AuthState = {
 
 export const useAuthStore = create<AuthState>((set) => ({
   isAuthenticated: false,
-  // 상태 업데이트 함수
   login: (token) => {
     localStorage.setItem('accessToken', token);
     set({ isAuthenticated: true });
