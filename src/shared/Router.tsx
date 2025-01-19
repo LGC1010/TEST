@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Main from '../pages/Main';
 import Login from '../pages/Login';
-import SignUp from '../pages/Signup';
-import Mypage from '../pages/Profile';
+import Mypage from '../pages/MyPage';
 import { useAuthStore } from '../stroe/userStore';
+import SignUp from '../pages/SignUp';
 
 const PrivateRoute = ({ element: Element, ...rest }) => {
   const { isAuthenticated } = useAuthStore();
