@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Main from '../pages/Main';
 import Login from '../pages/Login';
-import Mypage from '../pages/MyPage';
-import SignUp from '../pages/SignUp';
 import { useAuthStore } from '../stroe/userStore';
 import { RouteProps } from '../types/type';
+import SignUp from '../pages/SignUp';
+import MyPage from '../pages/MyPage';
 
 const PrivateRoute: React.FC<RouteProps> = ({ element: Element, ...rest }) => {
   const { isAuthenticated } = useAuthStore();
@@ -22,8 +22,8 @@ const Router = () => {
       <Routes>
         <Route path='/' element={<Main />}></Route>
         <Route path='/login' element={<PublicRoute element={Login} />} />
-        <Route path='/signup' element={<PublicRoute element={SignUp} />} />
-        <Route path='/mypage' element={<PrivateRoute element={Mypage} />} />
+        <Route path='/Signup' element={<PublicRoute element={SignUp} />} />
+        <Route path='/Mypage' element={<PrivateRoute element={MyPage} />} />
       </Routes>
     </BrowserRouter>
   );

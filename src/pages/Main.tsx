@@ -30,7 +30,7 @@ const Main = () => {
         <div>
           <button
             className='w-44 mt-4 text-white bg-[#9cbfdb] py-3 px-4 border pd-2 mr-4'
-            onClick={() => navigate('/login')}
+            onClick={() => navigate('/Login')}
           >
             로그인 하러가기
           </button>
