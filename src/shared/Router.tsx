@@ -2,8 +2,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Main from '../pages/Main';
 import Login from '../pages/Login';
 import Mypage from '../pages/MyPage';
-import { useAuthStore } from '../stroe/userStore';
 import SignUp from '../pages/SignUp';
+import { useAuthStore } from '../stroe/userStore';
 import { RouteProps } from '../types/type';
 
 const PrivateRoute: React.FC<RouteProps> = ({ element: Element, ...rest }) => {
