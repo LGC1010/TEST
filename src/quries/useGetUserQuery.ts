@@ -1,26 +1,15 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../stroe/userStore';
-import { LoginUser, Profile, token, User } from '../types/type';
-
-const API_URL = import.meta.env.VITE_API_URL;
-
-async function userRequest(token: token) {
-  const response = await axios.get(`${API_URL}/user`, token);
-  return response.data;
-}
+import { token } from '../types/type';
+import { loginRequest, register, upDateRequest, userRequest } from '../api/user';
+import { userKey } from './key/userKey';
 
 export const useGetUser = (res: token) => {
   return useQuery({
-    queryKey: ['user'],
+    queryKey: [userKey],
     queryFn: async () => await userRequest(res)
   });
-};
-
-const loginRequest = async (userData: LoginUser) => {
-  const response = await axios.post(`${API_URL}/login`, userData);
-  return response.data;
 };
 
 export const useLoginMutation = () => {
@@ -34,18 +23,13 @@ export const useLoginMutation = () => {
       alert('로그인 성공');
       login(res.accessToken);
       navigate('/');
-      queryClient.invalidateQueries({});
+      queryClient.invalidateQueries({ queryKey: [userKey] });
     },
     onError: (error) => {
       alert(error);
       console.log(error);
     }
   });
-};
-
-const register = async (userData: User) => {
-  const response = await axios.post(`${API_URL}/register`, userData);
-  return response.data;
 };
 
 export const useJoinMutation = () => {
@@ -57,17 +41,12 @@ export const useJoinMutation = () => {
     onSuccess: () => {
       alert('회원가입 성공');
       navigate('/');
-      queryClient.invalidateQueries({});
+      queryClient.invalidateQueries({ queryKey: [userKey] });
     },
     onError: (error) => {
       alert(error);
     }
   });
-};
-
-const upDateRequest = async ({ formData, userData }: Profile) => {
-  const response = await axios.patch(`${API_URL}/profile`, formData, userData);
-  return response.data;
 };
 
 export const useUpdateMutation = () => {
@@ -77,7 +56,7 @@ export const useUpdateMutation = () => {
     onSuccess: (res) => {
       console.log(res);
       alert('수정 완료~');
-      queryClient.invalidateQueries({});
+      queryClient.invalidateQueries({ queryKey: [userKey] });
     },
     onError: (error) => {
       alert(error);

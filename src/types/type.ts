@@ -8,15 +8,14 @@ export type User = { id: string; password: string; nickname: string };
 
 export type LoginUser = Omit<User, 'nickname'>;
 
-type UserData = {
-  headers: {
-    Authorization: string;
-    'Content-Type': string;
-  };
-};
 export type Profile = {
   formData: FormData;
-  userData: UserData;
+  userData: {
+    headers: {
+      Authorization: string;
+      'Content-Type': string;
+    };
+  };
 };
 
 export type UserInfo = {
