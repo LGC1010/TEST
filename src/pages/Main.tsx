@@ -36,7 +36,7 @@ const Main = () => {
           </button>
           <button
             className='w-44 mt-4 text-white bg-[#9cbfdb] py-3 px-4 border pd-2 mr-4'
-            onClick={() => navigate('/Signup')}
+            onClick={() => navigate('/SignUp')}
           >
             회원가입 하러가기
           </button>

@@ -8,12 +8,12 @@ import MyPage from '../pages/MyPage.tsx';
 
 const PrivateRoute: React.FC<RouteProps> = ({ element: Element, ...rest }) => {
   const { isAuthenticated } = useAuthStore();
-  return isAuthenticated ? <Element {...rest} /> : <Navigate to='/login' />;
+  return isAuthenticated ? <Element {...rest} /> : <Navigate to='/Login' />;
 };
 
 const PublicRoute: React.FC<RouteProps> = ({ element: Element, ...rest }) => {
   const { isAuthenticated } = useAuthStore();
-  return !isAuthenticated ? <Element {...rest} /> : <Navigate to='/mypage' />;
+  return !isAuthenticated ? <Element {...rest} /> : <Navigate to='/MyPage' />;
 };
 
 const Router = () => {
@@ -21,9 +21,9 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Main />}></Route>
-        <Route path='/login' element={<PublicRoute element={Login} />} />
-        <Route path='/Signup' element={<PublicRoute element={SignUp} />} />
-        <Route path='/Mypage' element={<PrivateRoute element={MyPage} />} />
+        <Route path='/Login' element={<PublicRoute element={Login} />} />
+        <Route path='/SignUp' element={<PublicRoute element={SignUp} />} />
+        <Route path='/MyPage' element={<PrivateRoute element={MyPage} />} />
       </Routes>
     </BrowserRouter>
   );
