@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../stroe/userStore';
+
 type LoginUser = { id: string; password: string };
 type User = { id: string; password: string; nickname: string };
 
@@ -28,8 +29,6 @@ export const useLoginMutation = () => {
     onError: (error) => {
       alert(error);
       console.log(error);
-      console.log(`${import.meta.env.VITE_API_URL}/login`);
-      console.log(`${API_URL}`);
     }
   });
 };
@@ -52,7 +51,26 @@ export const useJoinMutation = () => {
     },
     onError: (error) => {
       alert(error);
-      console.log(error);
+    }
+  });
+};
+
+const upDateRequest = async ({ formData, userData }) => {
+  const response = await axios.patch(`${API_URL}/profile`, formData, userData);
+  return response.data;
+};
+
+export const useUpdateMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: upDateRequest,
+    onSuccess: (res) => {
+      console.log(res);
+      alert('수정 완료~');
+      queryClient.invalidateQueries({});
+    },
+    onError: (error) => {
+      alert(error);
     }
   });
 };
