@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../stroe/userStore';
 import { token } from '../types/type';
 import { loginRequest, register, upDateRequest, userRequest } from '../api/user';
-import { userKey } from './key/userKey';
+import { UserKey } from './key/userKey';
 
 export const useGetUser = (res: token) => {
   return useQuery({
-    queryKey: [userKey],
+    queryKey: [UserKey],
     queryFn: async () => await userRequest(res)
   });
 };
@@ -23,7 +23,7 @@ export const useLoginMutation = () => {
       alert('로그인 성공');
       login(res.accessToken);
       navigate('/');
-      queryClient.invalidateQueries({ queryKey: [userKey] });
+      queryClient.invalidateQueries({ queryKey: [UserKey] });
     },
     onError: (error) => {
       alert(error);
@@ -41,7 +41,7 @@ export const useJoinMutation = () => {
     onSuccess: () => {
       alert('회원가입 성공');
       navigate('/');
-      queryClient.invalidateQueries({ queryKey: [userKey] });
+      queryClient.invalidateQueries({ queryKey: [UserKey] });
     },
     onError: (error) => {
       alert(error);
@@ -56,7 +56,7 @@ export const useUpdateMutation = () => {
     onSuccess: (res) => {
       console.log(res);
       alert('수정 완료~');
-      queryClient.invalidateQueries({ queryKey: [userKey] });
+      queryClient.invalidateQueries({ queryKey: [UserKey] });
     },
     onError: (error) => {
       alert(error);
